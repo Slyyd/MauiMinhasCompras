@@ -6,4 +6,13 @@ public partial class ListarProduto : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private void ToolbarItem_Clicked(object sender, EventArgs e)
+    {
+		try
+		{
+			Navigation.PushAsync(new Views.AdicionarProduto());
+		}
+		catch (Exception ex) { DisplayAlert("Erro", ex.Message, "OK!"); }
+    }
 }
