@@ -30,8 +30,20 @@ namespace MauiMinhasCompras
             InitializeComponent();
 
             //MainPage = new AppShell();
-            MainPage = new NavigationPage(new Views.ListarProduto());
+            //MainPage = new NavigationPage(new Views.ListarProduto());
 
         }
+
+        protected override Window CreateWindow(IActivationState? activationState)
+        {
+            var myWindow = new Window(new NavigationPage(new Views.ListarProduto()));
+
+            myWindow.Height = 800;
+            myWindow.Width = 600;
+
+            return myWindow;
+        }
+
+
     }
 }

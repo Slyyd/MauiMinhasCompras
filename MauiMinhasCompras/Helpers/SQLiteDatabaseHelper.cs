@@ -39,9 +39,9 @@ namespace MauiMinhasCompras.Helpers
 
         public Task<List<Produto>> SearchTable(string query) 
         {
-            string sql = "SELECT * Produto WHERE Descricao LIKE '?' ";
+            string sql = "SELECT * FROM Produto WHERE Descricao LIKE '%"+ query +"%'";
 
-            return _conn.QueryAsync<Produto>(sql, $"%{query}%");
+            return _conn.QueryAsync<Produto>(sql);
 
         }
 

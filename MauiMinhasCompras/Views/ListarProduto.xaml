@@ -6,7 +6,7 @@
 
     <ContentPage.ToolbarItems>
 
-        <ToolbarItem Text="Somar" />
+        <ToolbarItem Text="Somar" Clicked="ToolbarItem_Clicked_1"/>
         <ToolbarItem Text="Adicionar" Clicked="ToolbarItem_Clicked"/>
         <ToolbarItem Text="Remover" />
         <ToolbarItem Text="Procurar" />
@@ -15,8 +15,71 @@
     
     
     
-    <VerticalStackLayout>
-        
+    <VerticalStackLayout VerticalOptions="FillAndExpand">
+        <Frame Padding="10" Margin="10" BackgroundColor="#212121">
+            <VerticalStackLayout HorizontalOptions="Center" Spacing="15" Padding="5">
+
+                <Label FontAttributes="Bold" FontSize="30">Pesquisar Produtos</Label>
+                <SearchBar x:Name="txt_search" Placeholder="Digite aqui!" HorizontalTextAlignment="Center" TextChanged="txt_search_TextChanged"/>
+
+
+
+            </VerticalStackLayout>
+        </Frame>
+
+        <Frame Padding="10" Margin="10" BackgroundColor="#212121">
+
+            <VerticalStackLayout HorizontalOptions="Center" Spacing="15" Padding="5">
+
+                <Label HorizontalOptions="Center" FontAttributes="Bold" FontSize="30">Produtos no BD</Label>
+
+                <ListView x:Name="lst_produtos">
+
+                    <ListView.Header>
+
+                        <Grid ColumnDefinitions="*, *, *, *, *" ColumnSpacing="50" Padding="7" HorizontalOptions="CenterAndExpand">
+
+                            <Label Grid.Column="0" Text="ID"/>
+                            <Label Grid.Column="1" Text="Descrição"/>
+                            <Label Grid.Column="2" Text="Preço"/>
+                            <Label Grid.Column="3" Text="Qnt"/>
+                            <Label Grid.Column="4" Text="Total"/>
+
+                        </Grid>
+                        
+                    </ListView.Header>
+
+                    <ListView.ItemTemplate>
+
+                        <DataTemplate>
+
+                            <ViewCell>
+
+                                <ViewCell.ContextActions>
+                                    <MenuItem Text="Remover" Clicked="MenuItem_Clicked"/>
+                                </ViewCell.ContextActions>
+
+                                <Grid ColumnDefinitions="*, *, *, *, *" ColumnSpacing="50" Padding="7" HorizontalOptions="CenterAndExpand">
+
+                                    <Label Grid.Column="0" Text="{Binding Id}"/>
+                                    <Label Grid.Column="1" Text="{Binding Descricao}"/>
+                                    <Label Grid.Column="2" Text="{Binding Preco}"/>
+                                    <Label Grid.Column="3" Text="{Binding Quantidade}"/>
+                                    <Label Grid.Column="4" Text="{Binding Total}"/>
+
+                                </Grid>
+
+                            </ViewCell>
+                            
+                        </DataTemplate>
+                        
+                    </ListView.ItemTemplate>
+                    
+                    
+                </ListView>
+            </VerticalStackLayout>
+            
+        </Frame>
     </VerticalStackLayout>
     
     
