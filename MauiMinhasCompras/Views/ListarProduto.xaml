@@ -8,8 +8,6 @@
 
         <ToolbarItem Text="Somar" Clicked="ToolbarItem_Clicked_1"/>
         <ToolbarItem Text="Adicionar" Clicked="ToolbarItem_Clicked"/>
-        <ToolbarItem Text="Remover" />
-        <ToolbarItem Text="Procurar" />
 
     </ContentPage.ToolbarItems>
     
@@ -57,6 +55,7 @@
 
                                 <ViewCell.ContextActions>
                                     <MenuItem Text="Remover" Clicked="MenuItem_Clicked"/>
+                                    <MenuItem Text="Editar" Clicked="MenuItem_Clicked_1"/>
                                 </ViewCell.ContextActions>
 
                                 <Grid ColumnDefinitions="*, *, *, *, *" ColumnSpacing="50" Padding="7" HorizontalOptions="CenterAndExpand">
