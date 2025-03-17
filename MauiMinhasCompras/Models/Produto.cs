@@ -4,12 +4,56 @@ namespace MauiMinhasCompras.Models
 {
     public class Produto
     {
+        string def_descricao;
+        double def_quant;
+        double def_preco;
+        
+
+
+
         [PrimaryKey, AutoIncrement]
 
         public int Id { get; set; }
-        public string Descricao { get; set; }
-        public double Preco { get; set; }
-        public double Quantidade { get; set; }
+        public string Descricao
+        {
+            get => def_descricao;
+            set
+            {
+                if (value == null)
+                {
+                    throw new Exception("O produto não possuí uma descrição.");
+                }
+
+                def_descricao = value;
+            }
+        }
+
+        public double Preco
+        {
+            get => def_preco;
+            set
+            {
+                if (value <= 0.0)
+                {
+                    value = 1;
+                }
+
+                def_preco = value;
+            }
+        }
+        public double Quantidade
+        {
+            get => def_quant;
+            set
+            {
+                if (value <= 0.0)
+                {
+                    value = 1;
+                }
+
+                def_quant = value;
+            }
+        }
         public double Total { get => Quantidade * Preco; }
 
 
