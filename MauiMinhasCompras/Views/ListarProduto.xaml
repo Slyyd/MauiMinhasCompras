@@ -2,49 +2,86 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiMinhasCompras.Views.ListarProduto"
-             Title="Lista de Produtos">
+             Title="Lista de Produtos"
+             BackgroundColor="{StaticResource Primary}">
 
     <ContentPage.ToolbarItems>
 
+        <ToolbarItem Text="Limpar" Clicked="ToolbarItem_Clicked_2"/> <!--Botão para apagar todos os dados do DB-->
         <ToolbarItem Text="Somar" Clicked="ToolbarItem_Clicked_1"/>
         <ToolbarItem Text="Adicionar" Clicked="ToolbarItem_Clicked"/>
 
     </ContentPage.ToolbarItems>
-    
-    
-    
-    <VerticalStackLayout VerticalOptions="FillAndExpand">
-        <Frame Padding="10" Margin="10" BackgroundColor="#212121">
+
+    <ContentPage.Resources>
+
+        <ResourceDictionary>
+
+            <Style TargetType="Label">
+
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                
+            </Style>
+            
+        </ResourceDictionary>
+        
+    </ContentPage.Resources>
+
+    <StackLayout>
+
+        <Frame Padding="10" Margin="10" BackgroundColor="{StaticResource Primary}">
             <VerticalStackLayout HorizontalOptions="Center" Spacing="15" Padding="5">
 
                 <Label FontAttributes="Bold" FontSize="30">Pesquisar Produtos</Label>
                 <SearchBar x:Name="txt_search" Placeholder="Digite aqui!" HorizontalTextAlignment="Center" TextChanged="txt_search_TextChanged"/>
 
+                <Label Text="Filtrar por data" FontAttributes="Bold" FontSize="30" />
+                <BoxView HeightRequest="2.5" Margin="0,-10" Color="{StaticResource PrimaryDarkText}"/>
 
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="100">
+
+                    <Label Text="Início" FontSize="30" FontAttributes="Bold"/>
+                    <Label Text="Fim" FontSize="30" FontAttributes="Bold"/>
+
+                </HorizontalStackLayout>
+                
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="50">
+
+                    <DatePicker x:Name="dpk_inicio" Format="dd/MM/yy"/> <!--Data Inicial-->
+                    <DatePicker x:Name="dpk_fim" Format="dd/MM/yy"/> <!--Data Final-->
+
+                </HorizontalStackLayout>
+
+                <Button Text="Filtrar" FontAttributes="Bold" FontSize="20" Clicked="Button_Clicked"/>
 
             </VerticalStackLayout>
         </Frame>
 
-        <Frame Padding="10" Margin="10" BackgroundColor="#212121">
 
-            <VerticalStackLayout HorizontalOptions="Center" Spacing="15" Padding="5">
 
-                <Label HorizontalOptions="Center" FontAttributes="Bold" FontSize="30">Produtos no BD</Label>
+        <Frame Padding="10" Margin="10,-5" BackgroundColor="#212121" VerticalOptions="FillAndExpand">
 
-                <ListView x:Name="lst_produtos">
+
+            <StackLayout Spacing="0" Padding="5">
+
+                <Label HorizontalOptions="Center" FontAttributes="Bold" FontSize="30" Margin="0, 5">Produtos no BD</Label>
+
+                <ListView x:Name="lst_produtos"  IsPullToRefreshEnabled="True" Refreshing="lst_produtos_Refreshing" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="10,0" RowHeight="80">
 
                     <ListView.Header>
+                        
+                        <Grid ColumnDefinitions="*, 1.5*, *, *, *, 2*" RowSpacing="50" ColumnSpacing="30" Padding="7" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryDark}">
 
-                        <Grid ColumnDefinitions="*, *, *, *, *" ColumnSpacing="50" Padding="7" HorizontalOptions="CenterAndExpand">
-
-                            <Label Grid.Column="0" Text="ID"/>
+                            <Label Grid.Column="0" Text="ID" Padding="5"/>
                             <Label Grid.Column="1" Text="Descrição"/>
                             <Label Grid.Column="2" Text="Preço"/>
                             <Label Grid.Column="3" Text="Qnt"/>
-                            <Label Grid.Column="4" Text="Total"/>
+                            <Label Grid.Column="4" Text="Data"/>
+                            <Label Grid.Column="5" Text="Total" Padding="5"/>
 
                         </Grid>
-                        
+
                     </ListView.Header>
 
                     <ListView.ItemTemplate>
@@ -58,31 +95,39 @@
                                     <MenuItem Text="Editar" Clicked="MenuItem_Clicked_1"/>
                                 </ViewCell.ContextActions>
 
-                                <Grid ColumnDefinitions="*, *, *, *, *" ColumnSpacing="50" Padding="7" HorizontalOptions="CenterAndExpand">
+                                <Grid ColumnDefinitions="*, 1.5*, *, *, *, 2*" RowDefinitions="50" ColumnSpacing="30" Padding="7" HorizontalOptions="FillAndExpand">
 
-                                    <Label Grid.Column="0" Text="{Binding Id}"/>
+                                    <Label Grid.Column="0" Text="{Binding Id}" Padding="5"/>
                                     <Label Grid.Column="1" Text="{Binding Descricao}"/>
-                                    <Label Grid.Column="2" Text="{Binding Preco}"/>
+                                    <Label Grid.Column="2" Text="{Binding Preco, StringFormat='{}{0:c}'}"/>
                                     <Label Grid.Column="3" Text="{Binding Quantidade}"/>
-                                    <Label Grid.Column="4" Text="{Binding Total}"/>
+                                    <Label Grid.Column="4" Text="{Binding DataPesquisa, StringFormat='{0:dd/MM/yy}'}"/> <!--Binding com StringFormat para mostrar a data de forma correta-->
+                                    <Label Grid.Column="5" Text="{Binding Total, StringFormat='{}{0:c}'}" Padding="5"/>
 
                                 </Grid>
 
                             </ViewCell>
-                            
+
                         </DataTemplate>
-                        
+
                     </ListView.ItemTemplate>
-                    
-                    
+
+
                 </ListView>
-            </VerticalStackLayout>
-            
+            </StackLayout>
+
+
+
+
         </Frame>
-    </VerticalStackLayout>
-    
-    
-    
-    
-    
+        
+        
+
+
+    </StackLayout>
+
+
+
+
+
 </ContentPage>

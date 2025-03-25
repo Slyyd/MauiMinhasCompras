@@ -1,4 +1,5 @@
 ﻿using MauiMinhasCompras.Helpers;
+using System.Globalization;
 
 namespace MauiMinhasCompras
 {
@@ -28,6 +29,10 @@ namespace MauiMinhasCompras
         public App()
         {
             InitializeComponent();
+
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
+
+            
 
             //MainPage = new AppShell();
             //MainPage = new NavigationPage(new Views.ListarProduto());

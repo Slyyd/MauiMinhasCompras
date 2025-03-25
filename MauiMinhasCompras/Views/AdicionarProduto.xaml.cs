@@ -7,17 +7,23 @@ public partial class AdicionarProduto : ContentPage
     public AdicionarProduto()
     {
         InitializeComponent();
+
+        dtk_compra.MinimumDate = DateTime.Now;
+
     }
 
     private async void ToolbarItem_Clicked(object sender, EventArgs e)
     {
         try
         {
+
             Produto novoProduto = new Produto
             {
                 Descricao = txt_desc.Text,
                 Quantidade = Convert.ToDouble(txt_quant.Text),
-                Preco = Convert.ToDouble(txt_prec.Text)
+                Preco = Convert.ToDouble(txt_prec.Text),
+                DataCadastro = new DateTimeOffset(dtk_compra.Date).ToUnixTimeSeconds(), // Conversão de DateTime para Unix
+                DataPesquisa = dtk_compra.Date // Data que será mostrada para o usuário
             };
 
             await App.Db.Insert(novoProduto);

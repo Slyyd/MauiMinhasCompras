@@ -7,6 +7,8 @@ namespace MauiMinhasCompras.Models
         string def_descricao;
         double def_quant;
         double def_preco;
+        readonly DateTime currentTime = DateTime.Now;
+        long def_data;
         
 
 
@@ -56,6 +58,9 @@ namespace MauiMinhasCompras.Models
         }
         public double Total { get => Quantidade * Preco; }
 
+        public long DataCadastro { get; set; } // Tempo no formato Unix em segundos
+
+        public DateTime DataPesquisa { get; set; } // Tempo no formato DateTime, usado para a parte visual do app
 
     }
 }

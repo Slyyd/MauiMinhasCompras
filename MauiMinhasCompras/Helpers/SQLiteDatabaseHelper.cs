@@ -45,5 +45,22 @@ namespace MauiMinhasCompras.Helpers
 
         }
 
+        public Task<List<Produto>> DelEverything()
+        {
+            string sql = "DELETE FROM Produto";
+
+            return _conn.QueryAsync<Produto>(sql);
+        }
+
+        public Task<List<Produto>> SearchByTime(long startingTime, long endingTime) // Função para pesquisar no BD usando o tempo (unix em segundos)
+        {
+
+            string sql = $"SELECT * FROM Produto WHERE DataCadastro BETWEEN {startingTime} AND {endingTime}";
+
+            return _conn.QueryAsync<Produto>(sql);
+
+        }
+
+
     }
 }

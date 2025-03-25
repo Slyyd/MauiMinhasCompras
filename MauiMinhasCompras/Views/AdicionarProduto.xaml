@@ -11,20 +11,27 @@
 
     </ContentPage.ToolbarItems>
 
+    <Frame BackgroundColor="{StaticResource Primary}" Padding="5" Margin="10">
 
-    <VerticalStackLayout Spacing="10" Padding="10" VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand">
+        <VerticalStackLayout Spacing="10" Padding="10" VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand">
 
-        <Label Text="Descrição do produto:" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" />
-        <Entry x:Name="txt_desc" Placeholder="Ryzen 5600g" Margin="10"/>
+            <Label Text="Descrição do produto:" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" />
+            <Entry x:Name="txt_desc" Placeholder="Ryzen 5600g" Margin="10"/>
 
-        <Label Text="Quantidade:" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold"/>
-        <Entry x:Name="txt_quant" Keyboard="Numeric" Placeholder="5" Margin="10"/>
+            <Label Text="Quantidade:" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold"/>
+            <Entry x:Name="txt_quant" Keyboard="Numeric" Placeholder="5" Margin="10"/>
 
-        <Label Text="Preço Unitário:" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold"/>
-        <Entry x:Name="txt_prec" Keyboard="Numeric" Placeholder="500.0"  Margin="10"/>
-        
-        
+            <Label Text="Preço Unitário:" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold"/>
+            <Entry x:Name="txt_prec" Keyboard="Numeric" Placeholder="500.0"  Margin="10"/>
+
+            <Label Text="Data da Compra:" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold"/>
+            <DatePicker x:Name="dtk_compra" Format="dd/MM/yyyy" HorizontalOptions="Center" FontSize="20"/>
 
 
-    </VerticalStackLayout>
+
+
+        </VerticalStackLayout>
+
+    </Frame>
+
 </ContentPage>
